@@ -1,4 +1,6 @@
 
+import React from 'react';
+
 // Paleta de cores para gráficos
 export const chartColors = [
   'rgba(59, 130, 246, 0.8)', // Azul
