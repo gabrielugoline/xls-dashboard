@@ -32,7 +32,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is stored in localStorage (simulating persistence)
+    // Verifica se o usuário está armazenado no localStorage (simulando persistência)
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -42,19 +42,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string): Promise<void> => {
     try {
-      // Simulated login validation (in a real app, this would be an API call)
-      if (email === defaultUser.email && password === 'password') {
+      // Validação de login simulada (em um app real, isso seria uma chamada de API)
+      if (email === defaultUser.email && password === 'admin') {
         setUser(defaultUser);
         setIsAuthenticated(true);
         localStorage.setItem('user', JSON.stringify(defaultUser));
-        toast.success('Login successful');
+        toast.success('Login realizado com sucesso');
         navigate('/dashboard');
       } else {
-        toast.error('Invalid credentials');
-        throw new Error('Invalid credentials');
+        toast.error('Credenciais inválidas');
+        throw new Error('Credenciais inválidas');
       }
     } catch (error) {
-      toast.error('Login failed');
+      toast.error('Falha no login');
       throw error;
     }
   };
@@ -63,7 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null);
     setIsAuthenticated(false);
     localStorage.removeItem('user');
-    toast.info('Logged out successfully');
+    toast.info('Desconectado com sucesso');
     navigate('/');
   };
 
@@ -77,7 +77,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
   }
   return context;
 };

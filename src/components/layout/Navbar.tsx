@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu';
-import { FileSpreadsheet, LogOut, User } from 'lucide-react';
+import { FileSpreadsheet, LogOut } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/lib/utils';
 
@@ -35,7 +35,7 @@ export function Navbar() {
               location.pathname === "/" ? "text-primary" : "text-muted-foreground"
             )}
           >
-            Home
+            Início
           </Link>
           
           {isAuthenticated && (
@@ -57,7 +57,7 @@ export function Navbar() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                   <Avatar className="h-10 w-10 border-2 border-primary/10">
-                    <AvatarImage src="" alt={user?.name || 'User'} />
+                    <AvatarImage src="" alt={user?.name || 'Usuário'} />
                     <AvatarFallback className="bg-primary/10 text-primary">
                       {user?.name.charAt(0) || 'U'}
                     </AvatarFallback>
@@ -80,25 +80,19 @@ export function Navbar() {
                     <span>Dashboard</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/profile" className="cursor-pointer">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </Link>
-                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="cursor-pointer text-destructive focus:text-destructive"
                   onClick={logout}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Link to="/login">
-              <Button>Login</Button>
+              <Button>Entrar</Button>
             </Link>
           )}
         </div>

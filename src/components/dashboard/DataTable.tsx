@@ -25,21 +25,21 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
-  // Filter rows based on search term
+  // Filtra as linhas com base no termo de pesquisa
   const filteredRows = rows.filter(row =>
     row.some(cell => 
       String(cell).toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
 
-  // Calculate pagination
+  // Calcula a paginação
   const totalRows = filteredRows.length;
   const totalPages = Math.ceil(totalRows / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = Math.min(startIndex + pageSize, totalRows);
   const currentRows = filteredRows.slice(startIndex, endIndex);
 
-  // Handle pagination
+  // Gerencia a paginação
   const goToPage = (page: number) => {
     setCurrentPage(Math.min(Math.max(1, page), totalPages));
   };
@@ -47,15 +47,15 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
   return (
     <div className={cn("w-full rounded-xl bg-white p-4 flex flex-col", className)}>
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
-        <h3 className="text-xl font-medium">Data Table</h3>
+        <h3 className="text-xl font-medium">Tabela de Dados</h3>
         <div className="relative w-full md:w-64">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search data..."
+            placeholder="Pesquisar dados..."
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // Reset to first page on search
+              setCurrentPage(1); // Reseta para a primeira página ao pesquisar
             }}
             className="pl-8"
           />
@@ -63,7 +63,7 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
       </div>
 
       <div className="flex-1 rounded-md border">
-        <ScrollArea className="h-[400px] md:h-[500px]">
+        <ScrollArea className="h-[400px] md:h-[500px]" orientation="both">
           <Table>
             <TableHeader className="sticky top-0 bg-white shadow-sm z-10">
               <TableRow>
@@ -86,7 +86,7 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
               ) : (
                 <TableRow>
                   <TableCell colSpan={headers.length} className="h-24 text-center">
-                    {searchTerm ? 'No results found.' : 'No data available.'}
+                    {searchTerm ? 'Nenhum resultado encontrado.' : 'Nenhum dado disponível.'}
                   </TableCell>
                 </TableRow>
               )}
@@ -98,7 +98,7 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
       {totalRows > 0 && (
         <div className="flex items-center justify-between space-x-2 py-4">
           <div className="text-sm text-muted-foreground">
-            Showing {startIndex + 1}-{endIndex} of {totalRows} rows
+            Mostrando {startIndex + 1}-{endIndex} de {totalRows} linhas
           </div>
           <div className="flex items-center space-x-2">
             <Button
@@ -118,7 +118,7 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
               <ChevronLeft className="h-4 w-4" />
             </Button>
             <span className="text-sm">
-              Page {currentPage} of {totalPages || 1}
+              Página {currentPage} de {totalPages || 1}
             </span>
             <Button
               variant="outline"

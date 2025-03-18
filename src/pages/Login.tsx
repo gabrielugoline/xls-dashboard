@@ -13,7 +13,7 @@ import { toast } from 'sonner';
 
 const Login = () => {
   const [email, setEmail] = useState('gabrielugoline@gmail.com');
-  const [password, setPassword] = useState('password');
+  const [password, setPassword] = useState('admin');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
