@@ -1,38 +1,38 @@
 
 import React from 'react';
-import { FileSpreadsheet, BarChart4, PieChart, Table, Zap, LineChart, Lock } from 'lucide-react';
+import { FileSpreadsheet, BarChart4, PieChart, Table, Zap, Lock } from 'lucide-react';
 
 export function Features() {
   const features = [
     {
       icon: <FileSpreadsheet className="h-10 w-10 text-primary" />,
-      title: 'Excel Import',
-      description: 'Seamlessly import Excel spreadsheets (.xlsx, .xls, .csv) with just a drag and drop.'
+      title: 'Importação de Excel',
+      description: 'Importe planilhas Excel (.xlsx, .xls, .csv) facilmente com arrastar e soltar.'
     },
     {
       icon: <BarChart4 className="h-10 w-10 text-primary" />,
-      title: 'Bar Charts',
-      description: 'Visualize your data with responsive bar charts that automatically adapt to your screen size.'
+      title: 'Gráficos de Barras',
+      description: 'Visualize seus dados com gráficos de barras responsivos que se adaptam automaticamente ao tamanho da tela.'
     },
     {
       icon: <PieChart className="h-10 w-10 text-primary" />,
-      title: 'Pie Charts',
-      description: 'Create beautiful pie charts to show proportions and percentages in your data.'
+      title: 'Gráficos de Pizza',
+      description: 'Crie belos gráficos de pizza para mostrar proporções e porcentagens em seus dados.'
     },
     {
       icon: <Table className="h-10 w-10 text-primary" />,
-      title: 'Data Tables',
-      description: 'View and search through your raw data with powerful filtering and pagination.'
+      title: 'Tabelas de Dados',
+      description: 'Visualize e pesquise seus dados brutos com filtragem e paginação poderosas.'
     },
     {
       icon: <Zap className="h-10 w-10 text-primary" />,
-      title: 'Instant Analysis',
-      description: 'Get immediate insights with automatic data analysis and statistics calculation.'
+      title: 'Análise Instantânea',
+      description: 'Obtenha insights imediatos com análise automática de dados e cálculo de estatísticas.'
     },
     {
       icon: <Lock className="h-10 w-10 text-primary" />,
-      title: 'Secure',
-      description: 'Your data never leaves your browser, ensuring complete privacy and security.'
+      title: 'Segurança',
+      description: 'Seus dados nunca saem do seu navegador, garantindo total privacidade e segurança.'
     }
   ];
 
@@ -41,10 +41,10 @@ export function Features() {
       <div className="container">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Powerful Features
+            Recursos Poderosos
           </h2>
           <p className="text-muted-foreground">
-            Everything you need to transform your Excel data into interactive visualizations
+            Tudo o que você precisa para transformar seus dados Excel em visualizações interativas
           </p>
         </div>
         
