@@ -49,7 +49,7 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
         <h3 className="text-xl font-medium">Tabela de Dados</h3>
         <div className="relative w-full md:w-64">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Pesquisar dados..."
             value={searchTerm}
@@ -62,41 +62,43 @@ export function DataTable({ headers, rows, className }: DataTableProps) {
         </div>
       </div>
 
-      <div className="flex-1 rounded-md border">
-        <ScrollArea className="h-[400px] md:h-[500px]" orientation="both">
-          <Table>
-            <TableHeader className="sticky top-0 bg-white shadow-sm z-10">
-              <TableRow>
-                {headers.map((header, index) => (
-                  <TableHead key={index} className="font-medium">
-                    {header}
-                  </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {currentRows.length > 0 ? (
-                currentRows.map((row, rowIndex) => (
-                  <TableRow key={rowIndex} className="hover:bg-muted/50 animate-fade-in" style={{ animationDelay: `${rowIndex * 50}ms` }}>
-                    {row.map((cell, cellIndex) => (
-                      <TableCell key={cellIndex}>{String(cell || '')}</TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
+      <div className="flex-1 rounded-md border relative overflow-hidden">
+        <ScrollArea className="h-[400px] md:h-[500px]">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader className="sticky top-0 bg-white shadow-sm z-10">
                 <TableRow>
-                  <TableCell colSpan={headers.length} className="h-24 text-center">
-                    {searchTerm ? 'Nenhum resultado encontrado.' : 'Nenhum dado disponível.'}
-                  </TableCell>
+                  {headers.map((header, index) => (
+                    <TableHead key={index} className="font-medium bg-muted/30 py-4 px-2 min-w-[150px]">
+                      {header}
+                    </TableHead>
+                  ))}
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {currentRows.length > 0 ? (
+                  currentRows.map((row, rowIndex) => (
+                    <TableRow key={rowIndex} className="hover:bg-muted/50 animate-fade-in" style={{ animationDelay: `${rowIndex * 50}ms` }}>
+                      {row.map((cell, cellIndex) => (
+                        <TableCell key={cellIndex} className="py-3 px-2 whitespace-nowrap">{String(cell || '')}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={headers.length} className="h-24 text-center">
+                      {searchTerm ? 'Nenhum resultado encontrado.' : 'Nenhum dado disponível.'}
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
         </ScrollArea>
       </div>
 
       {totalRows > 0 && (
-        <div className="flex items-center justify-between space-x-2 py-4">
+        <div className="flex items-center justify-between space-x-2 py-4 flex-wrap">
           <div className="text-sm text-muted-foreground">
             Mostrando {startIndex + 1}-{endIndex} de {totalRows} linhas
           </div>
