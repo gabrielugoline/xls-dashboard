@@ -12,7 +12,7 @@ export function Footer() {
         </div>
         
         <p className="text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} XLS Panel. All rights reserved.
+          &copy; {new Date().getFullYear()} XLS Panel. Todos os direitos reservados.
         </p>
         
         <nav className="flex items-center gap-4">
@@ -20,13 +20,13 @@ export function Footer() {
             href="#" 
             className="text-xs text-muted-foreground underline-offset-4 hover:underline"
           >
-            Privacy Policy
+            Política de Privacidade
           </a>
           <a 
             href="#" 
             className="text-xs text-muted-foreground underline-offset-4 hover:underline"
           >
-            Terms of Service
+            Termos de Serviço
           </a>
         </nav>
       </div>

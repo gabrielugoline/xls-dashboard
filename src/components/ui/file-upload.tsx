@@ -6,14 +6,14 @@ import { cn } from '@/lib/utils';
 
 interface FileUploadProps {
   accept?: string;
-  maxSize?: number; // in MB
+  maxSize?: number; // em MB
   onFileSelected: (file: File) => void;
   className?: string;
 }
 
 export function FileUpload({
   accept = '.xlsx,.xls,.csv',
-  maxSize = 5, // 5MB default
+  maxSize = 5, // 5MB padrão
   onFileSelected,
   className,
 }: FileUploadProps) {
@@ -35,30 +35,30 @@ export function FileUpload({
   };
 
   const validateFile = (file: File): boolean => {
-    // Check file size
+    // Verifica tamanho do arquivo
     if (file.size > maxSize * 1024 * 1024) {
-      setError(`File size exceeds ${maxSize}MB limit`);
+      setError(`Tamanho do arquivo excede o limite de ${maxSize}MB`);
       return false;
     }
 
-    // Check file type based on accept prop
+    // Verifica tipo de arquivo com base no prop accept
     const fileExtension = `.${file.name.split('.').pop()?.toLowerCase()}`;
     const acceptedTypes = accept.split(',');
     
     if (!acceptedTypes.some(type => {
-      // Handle wildcard mime types like application/vnd.*
+      // Manipula tipos mime wildcard como application/vnd.*
       if (type.includes('*')) {
         const typePrefix = type.split('*')[0];
         return file.type.startsWith(typePrefix);
       }
-      // Handle extensions
+      // Manipula extensões
       if (type.startsWith('.')) {
         return fileExtension === type;
       }
-      // Handle specific mime types
+      // Manipula tipos mime específicos
       return file.type === type;
     })) {
-      setError(`Invalid file type. Accepted: ${accept}`);
+      setError(`Tipo de arquivo inválido. Aceitos: ${accept}`);
       return false;
     }
 
@@ -126,16 +126,16 @@ export function FileUpload({
               <UploadCloud className="h-10 w-10 text-muted-foreground" />
             </div>
             <div className="space-y-2">
-              <h3 className="font-medium text-lg">Upload Excel file</h3>
+              <h3 className="font-medium text-lg">Enviar arquivo Excel</h3>
               <p className="text-sm text-muted-foreground">
-                Drag and drop your file here or click to browse
+                Arraste e solte seu arquivo aqui ou clique para procurar
               </p>
               <p className="text-xs text-muted-foreground">
-                Supported formats: .xlsx, .xls, .csv (Max {maxSize}MB)
+                Formatos suportados: .xlsx, .xls, .csv (Máx {maxSize}MB)
               </p>
             </div>
             <Button type="button" variant="outline" size="sm">
-              Select File
+              Selecionar Arquivo
             </Button>
           </div>
         </div>

@@ -26,7 +26,7 @@ const Login = () => {
       await login(email, password);
       navigate('/dashboard');
     } catch (error) {
-      // Error is already handled in the auth context
+      // Erro já tratado no contexto de autenticação
     } finally {
       setIsLoading(false);
     }
@@ -43,9 +43,9 @@ const Login = () => {
               <div className="flex items-center justify-center mb-2">
                 <FileSpreadsheet className="h-8 w-8 text-primary mr-2" />
               </div>
-              <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
+              <CardTitle className="text-2xl text-center">Bem-vindo de volta</CardTitle>
               <CardDescription className="text-center">
-                Enter your credentials to access your dashboard
+                Digite suas credenciais para acessar seu painel
               </CardDescription>
             </CardHeader>
             <form onSubmit={handleLogin}>
@@ -55,7 +55,7 @@ const Login = () => {
                   <Input 
                     id="email" 
                     type="email" 
-                    placeholder="example@email.com" 
+                    placeholder="exemplo@email.com" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
@@ -64,9 +64,9 @@ const Login = () => {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">Senha</Label>
                     <a href="#" className="text-xs text-primary underline-offset-4 hover:underline">
-                      Forgot password?
+                      Esqueceu a senha?
                     </a>
                   </div>
                   <Input 
@@ -84,14 +84,14 @@ const Login = () => {
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Signing in...
+                      Entrando...
                     </>
                   ) : (
-                    "Sign in"
+                    "Entrar"
                   )}
                 </Button>
                 <p className="mt-4 text-center text-sm text-muted-foreground">
-                  Use the pre-filled login details to sign in as administrator
+                  Use os dados pré-preenchidos para entrar como administrador
                 </p>
               </CardFooter>
             </form>

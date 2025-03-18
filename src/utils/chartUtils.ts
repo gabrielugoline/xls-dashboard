@@ -1,24 +1,24 @@
 
-// Color palette for charts
+// Paleta de cores para gráficos
 export const chartColors = [
-  'rgba(59, 130, 246, 0.8)', // Blue
-  'rgba(99, 102, 241, 0.8)', // Indigo
-  'rgba(139, 92, 246, 0.8)', // Purple
-  'rgba(236, 72, 153, 0.8)', // Pink
-  'rgba(239, 68, 68, 0.8)',  // Red
-  'rgba(249, 115, 22, 0.8)', // Orange
-  'rgba(245, 158, 11, 0.8)', // Amber
-  'rgba(16, 185, 129, 0.8)', // Emerald
-  'rgba(20, 184, 166, 0.8)', // Teal
-  'rgba(6, 182, 212, 0.8)',  // Cyan
+  'rgba(59, 130, 246, 0.8)', // Azul
+  'rgba(99, 102, 241, 0.8)', // Índigo
+  'rgba(139, 92, 246, 0.8)', // Roxo
+  'rgba(236, 72, 153, 0.8)', // Rosa
+  'rgba(239, 68, 68, 0.8)',  // Vermelho
+  'rgba(249, 115, 22, 0.8)', // Laranja
+  'rgba(245, 158, 11, 0.8)', // Âmbar
+  'rgba(16, 185, 129, 0.8)', // Esmeralda
+  'rgba(20, 184, 166, 0.8)', // Turquesa
+  'rgba(6, 182, 212, 0.8)',  // Ciano
 ];
 
-// Get a color based on index (cycles through the palette for larger datasets)
+// Obtém uma cor com base no índice (cicla pela paleta para conjuntos de dados maiores)
 export const getColorByIndex = (index: number): string => {
   return chartColors[index % chartColors.length];
 };
 
-// Format large numbers to be more readable
+// Formata números grandes para serem mais legíveis
 export const formatNumber = (num: number): string => {
   if (num === null || isNaN(num)) return '0';
   
@@ -33,7 +33,7 @@ export const formatNumber = (num: number): string => {
   }
 };
 
-// Generate recharts data for pie chart
+// Gera dados para gráfico de pizza no recharts
 export const generatePieChartData = (
   data: Array<{ label: string; value: number }>,
   maxSlices: number = 5
@@ -45,7 +45,7 @@ export const generatePieChartData = (
     }));
   }
   
-  // If we have more slices than maxSlices, combine the smallest into "Other"
+  // Se tivermos mais fatias do que maxSlices, combine as menores em "Outros"
   const sortedData = [...data].sort((a, b) => b.value - a.value);
   const mainSlices = sortedData.slice(0, maxSlices - 1);
   const otherSlices = sortedData.slice(maxSlices - 1);
@@ -58,19 +58,19 @@ export const generatePieChartData = (
       fill: getColorByIndex(index),
     })),
     {
-      label: 'Other',
+      label: 'Outros',
       value: otherValue,
       fill: getColorByIndex(maxSlices - 1),
     },
   ];
 };
 
-// Generate custom tooltip content for charts
+// Gera conteúdo de tooltip personalizado para gráficos
 export const customTooltipFormatter = (value: number, name: string): [string, string] => {
   return [formatNumber(value), name];
 };
 
-// Format percentage for pie charts
+// Formata porcentagem para gráficos de pizza
 export const renderCustomizedPieLabel = ({
   cx,
   cy,
@@ -78,7 +78,14 @@ export const renderCustomizedPieLabel = ({
   innerRadius,
   outerRadius,
   percent,
-}: any) => {
+}: {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  percent: number;
+}) => {
   const RADIAN = Math.PI / 180;
   const radius = innerRadius + (outerRadius - innerRadius) * 0.6;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
